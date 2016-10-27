@@ -24,14 +24,14 @@ export class DevicesComponent implements OnInit {
         private router: Router,
         private deviceService: DeviceService) { }
 
-    getDevices(): void {
-        this.deviceService.getDevices().then(
+    getDevices(sortingMode:number): void {
+        this.deviceService.getDevices(sortingMode).then(
             devices => this.devices = devices
         );
     }
 
     ngOnInit(): void {
-        this.getDevices();
+        this.getDevices(DeviceService.SORT_NONE);
     }
 
     isJustAdded(creationDate):Boolean {
@@ -51,11 +51,12 @@ export class DevicesComponent implements OnInit {
     }
 
     sortPriceDown():void {
+        this.getDevices(DeviceService.SORT_DOWN);
 
     }
 
     sortPriceUp():void {
-
+        this.getDevices(DeviceService.SORT_UP);
     }
 
 
