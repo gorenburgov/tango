@@ -1,0 +1,115 @@
+<div class="wrapper flush order_step">
+    <div class="wrapperSection">
+        <h2 class="mainHeader">Create your Ting account</h2>
+        <p class="tagline">
+            Already have an account?
+            <button class="trigger" type="button" id="signinTrigger">Sign in instead.</button>
+        </p>
+        <form #accountForm = "ngForm">
+
+            <div class="loginContainer">
+                <section class="formSection ">
+                    <fieldset>
+                        <div class="fieldgroup halfWide sign-up">
+                            <label for="firstName">First name</label>
+                            <input type="text" id="firstName" name="firstName" required pattern="^[a-zA-Z]+$"
+                                   [(ngModel)]="model.firstName" value="" #firstName="ngModel">
+                            <div [hidden]="!submitted || firstName.valid || !firstName.errors.required" class="validation-advice">This field is required.</div>
+                            <div [hidden]="!submitted || firstName.valid || !firstName.errors.pattern " class="validation-advice" >Only latin letters allowed</div>
+                        </div>
+                        <div class="fieldgroup halfWide sign-up">
+                            <label for="lastName">Last name</label>
+                            <input type="text" id="lastName" name="lastName" class="required" required
+                                   [(ngModel)]="model.lastName" value="" #lastName="ngModel">
+                            <div [hidden]="!submitted || lastName.valid || !lastName.errors.required" class="validation-advice">This field is required.</div>
+                            <div [hidden]="!submitted || lastName.valid || !lastName.errors.pattern " class="validation-advice" >Only latin letters allowed</div>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="fieldgroup fullWide inline sign-up">
+                            <label>
+                                <input type="checkbox" name="accountType"
+                                       [(ngModel)]="model.accountType"
+                                       value="">
+                                This is a business account
+                            </label>
+                        </div>
+                        <div *ngIf="model.accountType" class="fieldgroup fullWide sign-up" id="businessFieldGroup">
+                            <label for="businessName">Business name</label>
+                            <input type="text" id='businessName' name="businessName" required
+                                   [(ngModel)]="model.businessName" value="" class="required"  #businessName="ngModel">
+                            <div [hidden]="!submitted || businessName.valid " class="validation-advice">This field is required.</div>
+                        </div>
+
+                        <div class="fieldgroup halfWide sign-up">
+                            <label for="phone">Contact number</label>
+                            <input type="tel" id="phone" name="phone" class="strict-phone required" required
+                                   pattern = "[0-9]+[-]*[0-9]+[-]*[0-9]+"
+                                   [(ngModel)]="model.phone" value="" #phone="ngModel">
+                            <div [hidden]="!submitted || phone.valid || !phone.errors.required" class="validation-advice">This field is required.</div>
+                            <div [hidden]="!submitted || phone.valid || !phone.errors.pattern" class="validation-advice">Please enter a valid phone number. For example "123-123-4567"</div>
+                        </div>
+
+                        <div class="fieldgroup halfWide both">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" id="email" required
+                                   class="strict-email required emailField"
+                                   pattern="^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$"
+                                   [(ngModel)]="model.email" value="" #email="ngModel">
+                            <div [hidden]=" !submitted || email.valid || !email.errors.required " class="validation-advice">This field is required.</div>
+                            <div [hidden]=" !submitted || email.valid || !email.errors.pattern " class="validation-advice" >Please enter a valid email address. For example "fred@domain.com".</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="fieldgroup halfWide both">
+                            <label for="password"> Password
+                            </label>
+                            <input type="password" name="password" class="minLength:10" id="password" required
+                                   minlength="10"
+                                   [(ngModel)]="model.password" #password="ngModel">
+                            <div [hidden]="!submitted || password.valid || !password.errors.required" class="validation-advice">This field is required.</div>
+                            <div [hidden]="!submitted || password.valid || !password.errors.minlength" class="validation-advice">Please enter at least 10 characters.</div>
+                        </div>
+
+                        <div class="fieldgroup halfWide sign-up">
+                            <label for="confirmPassword">Confirm password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" [(ngModel)]="model.confirmPassword" required pattern="{{password.value}}"
+                                   class="required validate-match matchInput:&quot;password&quot; matchName:&quot;Passwords&quot;"
+                                   id="confirmPassword" #confirmPassword="ngModel">
+                            <div [hidden]="!submitted || confirmPassword.valid || !confirmPassword.errors.required" class="validation-advice">This field is required.</div>
+                            <div [hidden]="!submitted || confirmPassword.valid || !confirmPassword.errors.pattern" class="validation-advice">Confirmation is not matched to password</div>
+
+                        </div>
+
+                        <label class="sign-up clear">Notifications</label>
+                        <div class="fieldgroup fullWide sign-up  email_news">
+                            <label class="checkbox">
+                                <input type="checkbox" name="sendNews" id="sendNews" checked="" [(ngModel)]="model.sendNews" >Send me Ting news
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="sendDeviceAlerts" id="sendDeviceAlerts" [(ngModel)]="model.sendDeviceAlerts" checked="">Send me alerts about new
+                                devices
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="sendNps" id="sendNps" [(ngModel)]="model.sendNps" checked="">Send me Ting satisfaction surveys (4
+                                per year)
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="buttons">
+
+                        <button (click)="newAccount(accountForm.valid)" name="create_user_and_login" class="sign-up enabledSubmit" type="button"
+                                >Sign up
+                        </button>
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </form>
+    </div>
+</div>

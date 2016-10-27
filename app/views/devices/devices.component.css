@@ -1,0 +1,6 @@
+.sortingPanel {
+    position: fixed;
+    width: 30%;
+    left:0;
+    top: 100px;
+}

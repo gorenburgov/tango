@@ -1,0 +1,19 @@
+<div class="detailsWrapper" *ngIf="device">
+    <h1 class="marketingHeader">{{device.brand +' '+device.model}}</h1>
+    <br><br><br>
+    <div id="productSection">
+        <div class="touts">
+            <div class="productBlock block alt gsm">
+                <p class="toutHead">
+                    {{networkList}}
+                    <button class="trigger networkHelpTrigger" type="button">?</button>
+                    <br>
+                    From Ting
+                </p>
+                <span class="head main">${{device.minPrice}}</span>
+                <span class="productDetail subDetail ">Ships today</span>
+                <button (click)="createAccount()" class="enabledSubmit">Buy</button>
+            </div>
+        </div>
+    </div>
+</div>

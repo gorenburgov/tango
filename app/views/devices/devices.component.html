@@ -1,0 +1,28 @@
+<div class="sortingPanel">
+    <button>Price Down</button>
+    <button>Price Up</button>
+</div>
+<div id="deviceContainer" class="devices filterOpen">
+<ul>
+<li  *ngFor="let device of devices"  id="{{'id'+device.id}}" class="device">
+    <div class="deviceSticker listing new" [hidden]="!isJustAdded(device.creationDate)">Just added</div>
+    <div class="deviceSticker listing sale" [hidden]="!device.saleProfit">Save <span class="price">${{device.saleProfit}}</span></div>
+
+    <a href="{{'/detail/'+device.id}}" class="deviceImage">
+        <img src="{{'img/'+device.imgFile ||'device.jpg'}}" height="250" width="188" alt="{{device.model}}">
+        <div class="ctaButton"><button type="button">View details</button></div>
+    </a>
+    <p class="deviceName head levelFive">
+        <a href="{{'/detail/'+device.id}}" class="">
+            {{device.brand}}<br>{{device.model}}
+        </a>
+    </p>
+    <p class="devicePrice head levelFive ">${{device.minPrice}}</p>
+    <p class="deviceFinancing head"></p>
+    <div class="subDetails">
+        <span class="subDetail">{{device.isRefubrished ? 'REFUBRISHED':'NEW'}}</span>
+        <span class="subDetail">{{getNetworkList(device)}}</span>
+    </div>
+</li>
+</ul>
+</div>
