@@ -50,5 +50,13 @@ export class DevicesComponent implements OnInit {
         return DeviceModel.getNetworkList(device).join(',');
     }
 
+    sortPriceDown():void {
+
+    }
+
+    sortPriceUp():void {
+
+    }
+
 
 }
